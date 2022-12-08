@@ -28,13 +28,18 @@
 					<span><input type="checkbox" value="intermitente" v-model="features"> Intermitente</span>
 				</Rotulo>
 				<Rotulo nome="Which Product?">
-					<span class="mr-4"><input type="radio" > Web</span>
-					<span class="mr-4"><input type="radio" > Mobile</span>Primeira Reclamação?Características do Problema
-					<span><input type="radio"> Outro</span>
+					<span class="mr-4"><input type="radio" value="web" v-model="product"> Web</span>
+					<span class="mr-4"><input type="radio" value="mobile" v-model="product"> Mobile</span>
+					<span><input type="radio" value="outro" v-model="product"> Outro</span>
 				</Rotulo>
 				<Rotulo nome="Priority">
-					<select name="" id="">
-						<option></option>
+					<select v-model="priority">
+						<option v-for="priority in prioritys"
+						:key="priority.code"
+						:value="priority.code"
+					
+						>{{ priority.name }}</option>
+				
 					</select>
 				</Rotulo>
 				<Rotulo nome="First Complaint?">
@@ -67,10 +72,10 @@
 					</span>
 				</Rotulo>
 				<Rotulo nome="Which product?">
-					<span>???</span>
+					<span>{{ product }}</span>
 				</Rotulo>
 				<Rotulo nome="Priority">
-					<span>???</span>
+					<span> {{ priority }}</span>
 				</Rotulo>
 				<Rotulo nome="First Complaint?">
 					<span>???</span>
@@ -91,6 +96,13 @@ export default {
 		return{
 			message: '',
 			features: [],
+			priority: 1,
+			prioritys: [
+				{code: 1, name: 'Low'},
+				{code: 2, name: 'Medium'},
+				{code: 3, name: 'High'},
+			],
+			product: 'wbe',
 			user: {
 				email: '',
 				password: '',
